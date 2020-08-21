@@ -8,6 +8,15 @@ buildscript {
     }
 
     repositories {
+
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        google()
+        jcenter()
+        mavenCentral()
+        // umeng
+        maven { url 'https://dl.bintray.com/umsdk/release' }
+
+
         jcenter()
         maven {
             url 'https://maven.google.com/'
@@ -15,7 +24,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath 'com.android.tools.build:gradle:3.5.2'
     }
 }
 
@@ -28,6 +37,22 @@ allprojects {
     group = GROUP
 
     repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+
+        mavenCentral()
+        maven {
+            url "https://repository.kaazing.com/maven/"
+        }
+        maven {
+            url "https://dl.bintray.com/tencentqcloudterminal/maven"
+        }
+
+        // umeng
+        maven { url 'http://dl.bintray.com/umsdk/release' }
+
         jcenter()
         maven {
             url 'https://maven.google.com/'

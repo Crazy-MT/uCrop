@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.widget.FrameLayout;
 
 import com.yalantis.ucrop.R;
@@ -36,6 +38,37 @@ public class UCropView extends FrameLayout {
 
 
         setListenersToViews();
+    }
+
+    private static final String TAG = "UCropView";
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        Log.e(TAG, "dispatchTouchEvent: MTMTMT 0 " + " " + ev.getAction());
+        if (ev.getPointerCount() == 2) {
+            Log.e(TAG, "dispatchTouchEvent: MTMTMT 1 " + ev.getAction());
+            mGestureCropImageView.dispatchTouchEvent(ev);
+            mViewOverlay.setmCurrentTouchCornerIndex(-1);
+        }
+        if (ev.getActionMasked() == MotionEvent.ACTION_POINTER_DOWN) {
+            mGestureCropImageView.dispatchTouchEvent(ev);
+            mViewOverlay.donotHandle = true;
+        } else {
+            mViewOverlay.donotHandle = false;
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        Log.e(TAG, "onInterceptTouchEvent: MTMTMT " + ev.getAction());
+        return super.onInterceptTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        Log.e(TAG, "onTouchEvent: MTMTMT " + event.getAction());
+        return super.onTouchEvent(event);
     }
 
     private void setListenersToViews() {
