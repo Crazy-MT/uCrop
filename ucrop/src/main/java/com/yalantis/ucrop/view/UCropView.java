@@ -44,9 +44,7 @@ public class UCropView extends FrameLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        Log.e(TAG, "dispatchTouchEvent: MTMTMT 0 " + " " + ev.getAction());
         if (ev.getPointerCount() == 2) {
-            Log.e(TAG, "dispatchTouchEvent: MTMTMT 1 " + ev.getAction());
             mGestureCropImageView.dispatchTouchEvent(ev);
             mViewOverlay.setmCurrentTouchCornerIndex(-1);
         }
@@ -61,13 +59,11 @@ public class UCropView extends FrameLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        Log.e(TAG, "onInterceptTouchEvent: MTMTMT " + ev.getAction());
         return super.onInterceptTouchEvent(ev);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.e(TAG, "onTouchEvent: MTMTMT " + event.getAction());
         return super.onTouchEvent(event);
     }
 

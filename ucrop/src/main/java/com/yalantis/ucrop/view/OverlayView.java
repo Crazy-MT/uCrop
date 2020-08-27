@@ -9,6 +9,7 @@ import android.graphics.RectF;
 import android.graphics.Region;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -119,7 +120,6 @@ public class OverlayView extends View {
      */
     public void setFreestyleCropEnabled(boolean freestyleCropEnabled) {
         mFreestyleCropMode = freestyleCropEnabled ? FREESTYLE_CROP_MODE_ENABLE : FREESTYLE_CROP_MODE_DISABLE;
-        mFreestyleCropMode = FREESTYLE_CROP_MODE_DISABLE;
     }
 
     @FreestyleMode
@@ -310,7 +310,7 @@ public class OverlayView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (mCropViewRect.isEmpty() || mFreestyleCropMode == FREESTYLE_CROP_MODE_DISABLE) {
-//            return false;
+            return false;
         }
 
         float x = event.getX();
@@ -520,7 +520,7 @@ public class OverlayView extends View {
             canvas.drawRect(mCropViewRect, mCropFramePaint);
         }
 
-//        if (mFreestyleCropMode != FREESTYLE_CROP_MODE_DISABLE) {
+        if (mFreestyleCropMode != FREESTYLE_CROP_MODE_DISABLE) {
             canvas.save();
 
             mTempRect.set(mCropViewRect);
@@ -534,7 +534,7 @@ public class OverlayView extends View {
             canvas.drawRect(mCropViewRect, mCropFrameCornersPaint);
 
             canvas.restore();
-//        }
+        }
     }
 
     /**
